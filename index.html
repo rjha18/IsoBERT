@@ -15,19 +15,49 @@
       <div class="col-lg-10 col-md-8 mx-auto text-center">
         <h1 class="fw-light">Nonlinear Dimensionality Reduction on DistilBERT</h1>
       </div>
+
+      <div class="row text-center">
+        <div class="col">
+          <img src="img/isomap.png" class="figure-img img-fluid rounded" alt="Tenenbaum Isomap">
+        </div>
+        <h6 class="fw-light">Tenenbaum's Isomap</h6>
+      
+      </div>
+
       <div class="py-3 col-lg-10 col-md-0 mx-auto">
         <h3 class="fw-light">Abstract</h3>
-        <p class="lead text-muted">DistilBERT embeddings improve upon their widely used predecessor (BERT) by creating similarly performing embeddings that are "smaller, faster, cheaper and lighter"[CITE]. However, at 768 dimensions, the embeddings themselves can be prohibitively large. For this project we investigated the effects of linear (Kernel and standard PCA) and non-linear (IsoMAP) dimensionality reduction on DistilBERT embeddings, reducing to 128 and 16 dimensions. We find that in many cases, for text classification and sentiment analysis tasks, 16-dimensional, IsoMAP/PCA reduced DistilBERT embeddings often performed similarly or better when compared to 16 dimensional PCA-reduced embeddings, 128 dimensional PCA-reduced embeddings, and the original embeddings. These results show promise for a novel geometric approach to achieve lower dimensional text embeddings and pave way for data and application specific manifold reductions.</p>
+        <p class="lead text-muted"><a href="https://arxiv.org/abs/1910.01108">DistilBERT</a> embeddings improve upon their widely used predecessor (<a href="https://arxiv.org/pdf/1910.01108">BERT</a>) by creating similarly performing embeddings that are "smaller, faster, cheaper and lighter". However, at 768 dimensions, the embeddings themselves can be prohibitively large. For this project we investigated the effects of linear (<a href="https://people.eecs.berkeley.edu/~wainwrig/stat241b/scholkopf_kernel.pdf">Kernel</a> and standard PCA) and non-linear (<a href="https://web.mit.edu/cocosci/Papers/sci_reprint.pdf">Isomap</a>) dimensionality reduction on DistilBERT embeddings, reducing to 128 and 16 dimensions. We find that in many cases, for text classification and sentiment analysis tasks, 16-dimensional, Isomap/PCA reduced DistilBERT embeddings often performed similarly or better when compared to 16 dimensional PCA-reduced embeddings, 128 dimensional PCA-reduced embeddings, and the original embeddings. These results show promise for a novel geometric approach to achieve lower dimensional text embeddings and pave way for data and application specific manifold reductions.</p>
       </div>
 
       <div class="py-3 col-lg-10 col-md-0 mx-auto">
         <h3 class="fw-light">Problem Statement</h3>
-        <p class="lead text-muted">State of the art sentence embedding models consist of networks with many layers and millions of parameters, ultimately outputting a vector with hundreds or thousands of features. This leads to a long and expensive process of computing sentence level embeddings and storing large feature vectors. Some sentence embeddings models have looked to solve this problem by reducing the number of layers and parameters in the model to preserve as much information as possible while reducing the computational effort and storage required to produce embeddings. DistilBERT offers comparable performance to other sentence embedding models, outputting the same 768 features, while only using half the number of layers and parameters as the standard BERT model (https://arxiv.org/pdf/1910.01108.pdf). Other state of the art models like ALBERT (https://arxiv.org/abs/1909.11942) seek to solve this problem in a similar way, while also reducing the dimensionality of the sentence embeddings. While there is a lot of work being done optimizing the models themselves, another approach is reducing the dimensionality of the output embeddings. For many problems, 768 dimension features can be reduced to much smaller feature vectors to accomplish the same goal. Further, we hypothesize that different texts, or different classes of text have different embedded shapes which can be used to reduce the dimensionality of sentence embeddings for text classification and sentiment analysis.</p>
+        <p class="lead text-muted">State of the art sentence embedding models consist of networks with many layers and millions of parameters, ultimately outputting a vector with hundreds or thousands of features. This leads to a long and expensive process of computing sentence level embeddings and storing large feature vectors. Some sentence embeddings models have looked to solve this problem by reducing the number of layers and parameters in the model to preserve as much information as possible while reducing the computational effort and storage required to produce embeddings. DistilBERT offers comparable performance to other sentence embedding models, outputting the same 768 features, while only using half the number of layers and parameters as the standard BERT model. Other state of the art models like <a href="https://arxiv.org/abs/1909.11942">ALBERT</a> seek to solve this problem in a similar way, while also reducing the dimensionality of the sentence embeddings. While there is a lot of work being done optimizing the models themselves, another approach is reducing the dimensionality of the output embeddings. For many problems, 768 dimension features can be reduced to much smaller feature vectors to accomplish the same goal. Further, we hypothesize that different texts, or different classes of text have different embedded shapes which can be used to reduce the dimensionality of sentence embeddings for text classification and sentiment analysis.</p>
       </div>
 
       <div class="py-3 col-lg-10 col-md-0 mx-auto">
         <h3 class="fw-light">Related Work</h3>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+
+        <h5 class="fw-light">Inspiration</h5>
+        <ul class="lead text-muted">
+          <li>Application of linear dimensionality reduction for <a href="https://www.aclweb.org/anthology/W19-4328.pdf">word embeddings</a>. Provided justification that dimensionality reduction could work on textual embeddings.</li>
+          <li>Library that claims to have similar performance on sentence embeddings with <a href="https://www.sbert.net/examples/training/distillation/README.html">PCA</a>.</li>
+          <li>Text dimensionality reduction via <a href="https://towardsdatascience.com/word-vectors-and-decoding-autoencoder-for-dimensionality-reduction-407815ead4b7">Autoencoder</a>.</li>
+          <li>Geometric visualization of text embeddings via <a href="https://towardsdatascience.com/topic-modeling-with-bert-779f7db187e6">UMAP</a>.</li>
+        </ul>
+
+        <h5 class="fw-light">Dimensionality Reduction Resources</h5>
+        <ul class="lead text-muted">
+          <li>Wikipedia <a href="https://en.wikipedia.org/wiki/Isomap">Isomap</a></li>
+          <li>CMU <a href="https://www.cs.cmu.edu/~efros/courses/AP06/presentations/melchior_isomap_demo.pdf">Isomap</a> slides</li>
+          <li>SciKit Learn <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.manifold">Manifold Learning</a> Page</li>
+        </ul>
+
+        <h5 class="fw-light">BERT and Friends</h5>
+        <ul class="lead text-muted">
+          <li><a href="https://arxiv.org/pdf/1910.01108">BERT</a></li>
+          <li><a href="https://arxiv.org/abs/1909.11942">ALBERT</a></li>
+          <li><a href="https://arxiv.org/abs/1910.01108">DistilBERT</a></li>
+        </ul>
       </div>
 
       <div class="py-3 col-lg-10 col-md-0 mx-auto">
@@ -42,7 +72,7 @@
           </div>
         </div>
         <p class="lead text-muted">Now, you may ask yourself why not reduce the dimensionality via Isomap directly from 768 to 3. Notably, this takes a (prohibitively) long time, and in our experimentation much of the important dimensionality is maintained with a linear reduction from 768 to 64 dimensions.</p>
-        <p class="lead text-muted">Separately, Isomap is not the only non-linear reduction technique, but we found T-SNE to be far too slow and the entire LLE family struggled to maintain interesting information. We hypothesize a couple of reasons for this:</p>
+        <p class="lead text-muted">Separately, Isomap is not the only non-linear reduction technique, but we found <a href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf">T-SNE</a> to be far too slow and the entire <a href="https://www.robots.ox.ac.uk/~az/lectures/ml/lle.pdf">LLE</a> family struggled to maintain interesting information. We hypothesize a couple of reasons for this:</p>
         <ol class="lead text-muted">
           <li>We use only a small number of datapoints tested for each dataset (5000-15000). LLE is known to be a weak approach for non-uniform sample densities and the lack of data could have led to some roughness.</li>
           <li>Our dimensionality reduction techniques were agnostic to class. Since LLE relies on local neighborhoods, a neighborhood with multiple classes could be reduced to be disproportionately similar in a lower dimension. However, Isomap however reduces on global geodesic distance. This means that the pairwise geodesic distance is largely maintained and the elements of the same class should stay closer.</li>
@@ -139,7 +169,7 @@
               <td>79.19999695</td>
             </tr>
             <tr>
-              <th scope="row">IsoMAP</th>
+              <th scope="row">Isomap</th>
               <td>0.3619812727</td>
               <td>80.87999725 </td>
             </tr>
@@ -172,7 +202,7 @@
               <td>80.80000305</td>
             </tr>
             <tr>
-              <th scope="row">IsoMAP</th>
+              <th scope="row">Isomap</th>
               <td>0.7634957433</td>
               <td>78.48000336 </td>
             </tr>
@@ -205,7 +235,7 @@
               <td>99</td>
             </tr>
             <tr>
-              <th scope="row">IsoMAP</th>
+              <th scope="row">Isomap</th>
               <td>0.01761851087</td>
               <td>97.80000305 </td>
             </tr>
@@ -238,7 +268,7 @@
               <td>91.80000305</td>
             </tr>
             <tr>
-              <th scope="row">IsoMAP</th>
+              <th scope="row">Isomap</th>
               <td>0.2197600007</td>
               <td>86 </td>
             </tr>
