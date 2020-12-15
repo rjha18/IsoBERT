@@ -12,7 +12,7 @@
 <body>
   <section class="py-5 container">
     <div class="row py-lg-5">
-      <div class="col-lg-10 col-md-8 mx-auto text-center">
+      <div class="col-lg-9 col-md-8 mx-auto text-center">
         <h1 class="fw-light">Nonlinear Dimensionality Reduction on DistilBERT</h1>
       </div>
 
@@ -21,20 +21,19 @@
           <img src="img/isomap.png" class="figure-img img-fluid rounded" alt="Tenenbaum Isomap">
         </div>
         <h6 class="fw-light">Tenenbaum's Isomap</h6>
-      
       </div>
 
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
         <h3 class="fw-light">Abstract</h3>
-        <p class="lead text-muted"><a href="https://arxiv.org/abs/1910.01108">DistilBERT</a> embeddings improve upon their widely used predecessor (<a href="https://arxiv.org/pdf/1910.01108">BERT</a>) by creating similarly performing embeddings that are "smaller, faster, cheaper and lighter". However, at 768 dimensions, the embeddings themselves can be prohibitively large. For this project we investigated the effects of linear (<a href="https://people.eecs.berkeley.edu/~wainwrig/stat241b/scholkopf_kernel.pdf">Kernel</a> and standard PCA) and non-linear (<a href="https://web.mit.edu/cocosci/Papers/sci_reprint.pdf">Isomap</a>) dimensionality reduction on DistilBERT embeddings, reducing to 128 and 16 dimensions. We find that in many cases, for text classification and sentiment analysis tasks, 16-dimensional, Isomap/PCA reduced DistilBERT embeddings often performed similarly or better when compared to 16 dimensional PCA-reduced embeddings, 128 dimensional PCA-reduced embeddings, and the original embeddings. These results show promise for a novel geometric approach to achieve lower dimensional text embeddings and pave way for data and application specific manifold reductions. Our code is <a href="https://colab.research.google.com/drive/1-8NoW_xl11XPS_XkUOvzDlXLzuUnk3kk?usp=sharing">here</a> and our results <a href="https://docs.google.com/spreadsheets/d/1lRPDd_auOxFBoutjD4mF5BQsYw7ton4h7iod7lLl3D0/edit?usp=sharing">here<a>.</p>
+        <p class="lead text-muted"><a href="https://arxiv.org/abs/1910.01108">DistilBERT</a> embeddings improve upon their widely used predecessor (<a href="https://arxiv.org/pdf/1910.01108">BERT</a>) by creating similarly performing embeddings that are "smaller, faster, cheaper and lighter." However, at 768 dimensions, the embeddings themselves can be prohibitively large. For this project we investigated the effects of linear (<a href="https://people.eecs.berkeley.edu/~wainwrig/stat241b/scholkopf_kernel.pdf">Kernel</a> and standard PCA) and non-linear (<a href="https://web.mit.edu/cocosci/Papers/sci_reprint.pdf">Isomap</a>) dimensionality reduction on DistilBERT embeddings, reducing to 64 and 16 dimensions. We find that in many cases, for text classification and sentiment analysis tasks, 16-dimensional, Isomap/PCA reduced DistilBERT embeddings often performed similarly or better when compared to 16 dimensional PCA-reduced embeddings, 64 dimensional PCA-reduced embeddings, and the original embeddings. These results show promise for a novel geometric approach to achieve lower dimensional text embeddings from existing transformers and pave way for data and application specific manifold reductions. Our code is <a href="https://colab.research.google.com/drive/1-8NoW_xl11XPS_XkUOvzDlXLzuUnk3kk?usp=sharing">here</a> and our results <a href="https://docs.google.com/spreadsheets/d/1lRPDd_auOxFBoutjD4mF5BQsYw7ton4h7iod7lLl3D0/edit?usp=sharing">here<a>.</p>
       </div>
 
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
         <h3 class="fw-light">Problem Statement</h3>
-        <p class="lead text-muted">State of the art sentence embedding models consist of networks with many layers and millions of parameters, ultimately outputting a vector with hundreds or thousands of features. This leads to a long and expensive process of computing sentence level embeddings and storing large feature vectors. Some sentence embeddings models have looked to solve this problem by reducing the number of layers and parameters in the model to preserve as much information as possible while reducing the computational effort and storage required to produce embeddings. DistilBERT offers comparable performance to other sentence embedding models, outputting the same 768 features, while only using half the number of layers and parameters as the standard BERT model. Other state of the art models like <a href="https://arxiv.org/abs/1909.11942">ALBERT</a> seek to solve this problem in a similar way, while also reducing the dimensionality of the sentence embeddings. While there is a lot of work being done optimizing the models themselves, another approach is reducing the dimensionality of the output embeddings. For many problems, 768 dimension features can be reduced to much smaller feature vectors to accomplish the same goal. Further, we hypothesize that different texts, or different classes of text have different embedded shapes which can be used to reduce the dimensionality of sentence embeddings for text classification and sentiment analysis.</p>
+        <p class="lead text-muted"> State of the art deep textual analysis models and small memory-constrained NLP projects alike could benefit from smaller sentence embeddings. For the former, lighter, equally effective embeddings allow for deeper models. For the latter, smaller embeddings put less strain on computational resources. While there is a lot of work being done optimizing the models themselves, another approach is reducing the dimensionality of the output embeddings directly from existing transformers. We hypothesize that for many problems, high dimensional features can be reduced to much smaller dimensions using its underlying textual geometry to accomplish the same goal.</p>
       </div>
 
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
         <h3 class="fw-light">Related Work</h3>
 
         <h5 class="fw-light">Inspiration</h5>
@@ -60,9 +59,9 @@
         </ul>
       </div>
 
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
         <h3 class="fw-light">Motivation</h3>
-        <p class="lead text-muted">Text has latent structure and shape. For example, the structure and syntax of a recipe is noticeably different than that of an academic paper or poetry perhaps. So, the question for trying to reduce the dimensionality of DistilBERT then is how well the embeddings encapsulate an internal geometry of text and how can we best maintain this geometry. To answer this, we reduced the DistilBERT embeddings of the only 30 unique lines in Miley Cyrus’ “Party in the U.S.A” and a quasi-random selection of 30 sentences from Microsoft’s Security Agreement below. We start by reducing the embeddings to 64 dimensions by PCA and then to 3 using PCA again (on the right) and Isomap (on the left). As you can see on the right, DistilBERT embeddings do, in fact, have some interesting shape: the Miley Cyrus lyrics were largely mapped to a single dimension whereas the security agreement was sparse. On the left, however, the distinction is less clear.</p>
+        <p class="lead text-muted">Text has latent structure and shape. For example, the structure and syntax of a recipe is noticeably different than that of an academic paper or poetry perhaps. So, the question for trying to reduce the dimensionality of DistilBERT then is how well the embeddings encapsulate an internal geometry of text and how can we best maintain this geometry. To answer this, we reduced the DistilBERT embeddings of the only 30 unique lines in Miley Cyrus’ “Party in the U.S.A” and a quasi-random selection of 30 sentences from Microsoft’s Security Agreement below. We start by reducing the embeddings to 64 dimensions by PCA and then to 3 using Isomap (on the left) and PCA again (on the right). As you can see on the left, DistilBERT embeddings do, in fact, have some interesting shape: the Miley Cyrus lyrics were largely mapped to a single dimension whereas the security agreement was sparse. On the right, however, the distinction is less clear.</p>
         <div class="row text-center">
           <div class="col">
             <img src="img/mm_iso.png" class="figure-img img-fluid rounded" alt="Isomap Miley and Microsoft">
@@ -72,31 +71,31 @@
           </div>
         </div>
         <p class="lead text-muted">Now, you may ask yourself why not reduce the dimensionality via Isomap directly from 768 to 3. Notably, this takes a (prohibitively) long time, and in our experimentation much of the important dimensionality is maintained with a linear reduction from 768 to 64 dimensions.</p>
-        <p class="lead text-muted">Separately, Isomap is not the only non-linear reduction technique, but we found <a href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf">T-SNE</a> to be far too slow and the entire <a href="https://www.robots.ox.ac.uk/~az/lectures/ml/lle.pdf">LLE</a> family struggled to maintain interesting information. We hypothesize a couple of reasons for this:</p>
+        <p class="lead text-muted">Separately, Isomap is not the only non-linear reduction technique, but we found <a href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf">T-SNE</a> to be far too slow and the entire <a href="https://www.robots.ox.ac.uk/~az/lectures/ml/lle.pdf">LLE</a> family struggled to maintain interesting information. We hypothesize a couple of reasons for the latter:</p>
         <ol class="lead text-muted">
-          <li>We use only a small number of datapoints tested for each dataset (5000-15000). LLE is known to be a weak approach for non-uniform sample densities and the lack of data could have led to some roughness.</li>
-          <li>Our dimensionality reduction techniques were agnostic to class. Since LLE relies on local neighborhoods, a neighborhood with multiple classes could be reduced to be disproportionately similar in a lower dimension. However, Isomap however reduces on global geodesic distance. This means that the pairwise geodesic distance is largely maintained and the elements of the same class should stay closer.</li>
+          <li>We were only able to use a small number of datapoints for each dataset (2000-5000) due to computational restraints. LLE is known to be a weak approach for non-uniform sample densities and the lack of data could have led to some roughness.</li>
+          <li>Our dimensionality reduction techniques were agnostic to class. Since LLE relies on local neighborhoods, a neighborhood with multiple classes could be reduced to be disproportionately similar in a lower dimension. However, Isomap reduces on global geodesic distance. This means that the pairwise distance between two points on a graph in the original dimension is largely maintained in the embedded dimension and the elements of the same class should stay closer.</li>
         </ol>
         <p class="lead text-muted">In future work we would try a supervised version of LLE and other Isomap methods (Conformal and Landmark). In addition, we tried Kernel PCA, and found it be much slower with similar results to standard PCA. This, however, should be studied more carefully.</p>
       </div>
 
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
         <h3 class="fw-light">Methodology</h3>
         <h5 class="fw-light">Embeddings:</h5>
-        <p class="lead text-muted">From the DistilBERT embeddings we generated three embeddings:</p>
+        <p class="lead text-muted">Using DistilBERT we generated three embeddings:</p>
         <ol class="lead text-muted">
           <li>(Large) PCA</li>
           <li>(Small) PCA</li>
           <li>IsoBERT</li>
         </ol>
-        <p class="lead text-muted">The first, Large PCA was generated by performing a 64-dimensional PCA reduction on the DistilBERT embeddings for a given dataset. From Large PCA, we performed another PCA (16 dimensional this time) to create Small PCA and 16 dimensional Isomap to create our third embedding we dub ‘IsoBERT’. We tested each of these embeddings with a standard fine-tuning network described in the Experiments/Evaluation section.</p>
+        <p class="lead text-muted">The first, Large PCA was generated by performing a 64-dimensional PCA reduction on the DistilBERT embeddings for a given dataset. From Large PCA, we performed another PCA (16 dimensional this time) to create Small PCA and 16 dimensional Isomap to create our third embedding we dub ‘IsoBERT’. We tested each of these embeddings with a standard fine-tuning network described in the Experiments and Evaluation section. The generation diagram is shown below.</p>
         <div class="row text-center">
           <div class="col">
             <img src="img/embeddings.png" class="figure-img img-fluid rounded img-limit" alt="Embeddings">
           </div>
         </div>
         <h5 class="fw-light">Datasets:</h5>
-        <p class="lead text-muted">We tested on four datasets, three of which were text classification and the last being sentiment analysis. Notably, for the fake news dataset and the AGNews dataset, for computational resource reasons, we only analyze the titles of the articles. Details Below:</p>
+        <p class="lead text-muted">We tested on four datasets, three of which were text classification and the last being sentiment analysis. Notably, for the fake news dataset and the AGNews dataset, for computational resource reasons, we only analyze the titles of the articles.</p>
         <table class="table">
           <thead>
             <tr>
@@ -106,11 +105,6 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">Amazon Reviews</th>
-              <td>2</td>
-              <td>Sentiment Analysis</td>
-            </tr>
             <tr>
               <th scope="row">AG_NEWS</th>
               <td>5</td>
@@ -126,27 +120,33 @@
               <td>2</td>
               <td>Text Classification</td>
             </tr>
+            <tr>
+              <th scope="row">Amazon Reviews</th>
+              <td>2</td>
+              <td>Sentiment Analysis</td>
+            </tr>
           </tbody>
         </table>
 
       </div>
 
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
-        <h3 class="fw-light">Experiments</h3>
-        <p class="lead text-muted">In order to test our hypotheses, we tested a variety of different hyperparameters for our PCA and Isomap algorithms to find the optimal number of components and neighbors for each algorithm. We discovered that when initially reducing the dimensionality with PCA, we could capture 80% of the variance with only the top 64 components, which contained enough information for consistently strong performance among all datasets. As discussed in the methodology section, we experimented with a variety of different manifold learning techniques, but we found the best results (both runtime, memory and performance) to be Isomap. To further reduce the dimensionality of the embeddings, we empirically found running Isomap with 32 neighbors and reducing the embeddings down to a final embedding of 16 dimensions. We sought to reduce the dimensions as low as possible in both the PCA and Isomap stages without compromising downstream accuracy. Although our experimentation at this stage was not fully exhaustive, these parameters seemed to produce strong enough intermediate results to move forward to our evaluation.</p>
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+        <h3 class="fw-light">Experiments and Evaluation</h3>
+        <p class="lead text-muted">In order to test our hypotheses, we tested a variety of different hyperparameters for our PCA and Isomap algorithms to find the optimal number of components and neighbors for each algorithm. We discovered that when initially reducing the dimensionality with PCA, we could capture 80% of the variance with only the top 64 components, which contained enough information for consistently strong performance among all datasets. As discussed in the Motivation section, we experimented with a variety of different manifold learning techniques, but we found the best results (runtime, memory, and performance) to be Isomap. We empirically found running Isomap with 32 neighbors and 16 components was optimal. We sought to reduce the dimensions as low as possible in both the PCA and Isomap stages without compromising downstream accuracy. Although our experimentation at this stage was not fully exhaustive, these parameters seemed to produce strong enough intermediate results to move forward to our evaluation.</p>
+
+        <p class="lead text-muted">To maintain consistency in our evaluation, we trained all of our models using the same DistilBERT embeddings on the datasets. All datasets were shuffled, shortened to the top 5000 rows, then finally split into 75% training and 25% testing datasets. We trained a simple 2-layer (32 hidden dim with a ReLU activation) logistic regression model directly on the sentence embeddings, tuning the learning rate to maximize performance. This served as our baseline for the other three models we evaluated. We tuned the learning rate for each model separately, reporting training loss and accuracy on the test set. We repeated this procedure on each dataset with the exact same conditions and hyperparameters.</p>
       </div>
 
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
-        <h3 class="fw-light">Evaluation</h3>
-        <p class="lead text-muted">To maintain consistency in our evaluation, we trained all of our models using the same DistilBERT embeddings on the datasets. All datasets were shuffled, shortened to the top 5000 rows, then finally split into 75% training and 25% testing datasets. We trained a simple 2-layer (32 hidden dim) logistic regression model directly on the sentence embeddings, tuning the learning rate to maximize performance. This served as our baseline for the other three models we evaluated. We evaluated the three reduced dimension models on the same embeddings, starting the learning rate at 0.001 and training, with a learning rate adjustment of 0.1 when the train loss plateaued until each model appeared to converge, reporting training loss and accuracy on the test set. We repeated this procedure on each dataset with the exact same conditions and hyperparameters. </p>
-      </div>
-
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
         <h3 class="fw-light">Results</h3>
         <p class="lead text-muted">On the four benchmark datasets we selected, all three forms of dimensionality reduction we chose performed well. </p>
-        <p class="text-muted">Large PCA (n_components=64) performed extremely well in all four tests. Compared to logistic regression, Large PCA achieved better performance on two datasets (AG_NEWS, SMS_SPAM) and was within 1.3% test accuracy on the other two datasets. </p>
-        <p class="text-muted">Isomap (n_components=16) performed quite similarly to Large PCA on most datasets. We achieved superior test accuracy to logistic regression on the Amazon Review dataset, and were within 2.2% test accuracy on AG_NEWS and SMS_SPAM. The only shortcoming was a difference of 5% test accuracy on the Fake News dataset.</p>
-        <p class="text-muted">Small PCA (n_components=16) unsurprisingly maintained performance slightly worse than Large PCA across all four datasets. Still, Small PCA achieved test accuracy within 4.3% on three datasets (AG_NEWS, SMS_SPAM, Amazon Reviews), and performed only 5.4% worse on the fake news dataset.</p>
+        <ul class="lead text-muted">
+          <li>Large PCA (n_components=64) performed extremely well in all four tests. Compared to logistic regression, Large PCA achieved better performance on two datasets (AG_NEWS, SMS_SPAM) and was within 1.3% test accuracy on the other two datasets.</li>
+          <li>Isomap (n_components=16) performed quite similarly to Large PCA on most datasets. We the best accuracy on the Amazon Review dataset, and were within 2.2% test accuracy on AG_NEWS and SMS_SPAM. The only shortcoming was a difference of 5% test accuracy on the Fake News dataset.</li>
+          <li>Small PCA (n_components=16) as expected maintained performance slightly worse than Large PCA across all four datasets. Still, Small PCA achieved test accuracy within 4.3% on three datasets (AG_NEWS, SMS_SPAM, Amazon Reviews), and performed only 5.4% worse on the fake news dataset.</li>
+        </ul>
+
+        <p class="lead text-muted">As shown below, there was no clear winner. Unsurprisingly, Large PCA performed slightly better than both smaller dimensional embeddings. However, the Isomap embedding was a handily beat the PCA embedding of the same size on two of the four datasets, was slightly worse on the fake news dataset, and worse on the final. Isomap performed, on average nearly a percentage point (0.79%) better. TODO: Update numbers</p>
 
         <a style="text-decoration: none;";" href="https://www.kaggle.com/bittlingmayer/amazonreviews"><p class="lead text-muted">Amazon Reviews (2 Classes, sentiment analysis, trained on reviews)</p></a>
         <table class="table">
@@ -315,13 +315,24 @@
           </div>
         </div>
       </div>
+      
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+        <h3 class="fw-light">Future Work</h3>
+        <ul class="lead text-muted">
+          <li>Compare DistilBERT Reductions to reductions on other embeddings (XLNET, BERT, etc.).</li>
+          <li>Test different Isomap flavors (Conformal and Landmark).</li>
+          <li>Try a dimensionality reduction that is aware of model's labels of a datapoint. Perhaps incoroporate loss-learning</li>
+          <li>Investigate quicker alternatives to Isomap.</li>
+        </ul>
+      </div>
 
-      <div class="py-3 col-lg-10 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 mx-auto">
         <h3 class="fw-light">Video</h3>
-        <p class="lead text-muted">Put video here</p>
+        <p class="lead text-muted">TODO: Put video here</p>
       </div>
     </div>
   </section>
+  
   <section class="text-left container">
     <div class="row py-lg-5">
       
