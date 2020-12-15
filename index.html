@@ -122,9 +122,9 @@
       <div class="py-3 col-lg-10 col-md-0 mx-auto">
         <h3 class="fw-light">Results</h3>
         <p class="lead text-muted">On the four benchmark datasets we selected, all three forms of dimensionality reduction we chose performed well. </p>
-        <p class="text-muted">Big PCA (n_components=64) performed extremely well in all four tests. Compared to logistic regression, Big PCA achieved better performance on two datasets (AG_NEWS, SMS_SPAM) and was within 1.3% test accuracy on the other two datasets. </p>
-        <p class="text-muted">Isomap (n_components=16) performed quite similarly to Big PCA on most datasets. We achieved superior test accuracy to logistic regression on the Amazon Review dataset, and were within 2.2% test accuracy on AG_NEWS and SMS_SPAM. The only shortcoming was a difference of 5% test accuracy on the Fake News dataset.</p>
-        <p class="text-muted">Small PCA (n_components=16) unsurprisingly maintained performance slightly worse than Big PCA across all four datasets. Still, Small PCA achieved test accuracy within 4.3% on three datasets (AG_NEWS, SMS_SPAM, Amazon Reviews), and performed only 5.4% worse on the fake news dataset.</p>
+        <p class="text-muted">Large PCA (n_components=64) performed extremely well in all four tests. Compared to logistic regression, Large PCA achieved better performance on two datasets (AG_NEWS, SMS_SPAM) and was within 1.3% test accuracy on the other two datasets. </p>
+        <p class="text-muted">Isomap (n_components=16) performed quite similarly to Large PCA on most datasets. We achieved superior test accuracy to logistic regression on the Amazon Review dataset, and were within 2.2% test accuracy on AG_NEWS and SMS_SPAM. The only shortcoming was a difference of 5% test accuracy on the Fake News dataset.</p>
+        <p class="text-muted">Small PCA (n_components=16) unsurprisingly maintained performance slightly worse than Large PCA across all four datasets. Still, Small PCA achieved test accuracy within 4.3% on three datasets (AG_NEWS, SMS_SPAM, Amazon Reviews), and performed only 5.4% worse on the fake news dataset.</p>
 
         <a style="text-decoration: none;";" href="https://www.kaggle.com/bittlingmayer/amazonreviews"><p class="lead text-muted">Amazon Reviews (2 Classes, sentiment analysis, trained on reviews)</p></a>
         <table class="table">
@@ -142,7 +142,7 @@
               <td>80.48000336</td>
             </tr>
             <tr>
-              <th scope="row">Big PCA</th>
+              <th scope="row">Large PCA</th>
               <td>0.5291960239</td>
               <td>79.19999695</td>
             </tr>
@@ -175,7 +175,7 @@
               <td>80.63999939</td>
             </tr>
             <tr>
-              <th scope="row">Big PCA</th>
+              <th scope="row">Large PCA</th>
               <td>0.4542485178</td>
               <td>80.80000305</td>
             </tr>
@@ -208,7 +208,7 @@
               <td>98.19999695</td>
             </tr>
             <tr>
-              <th scope="row">Big PCA</th>
+              <th scope="row">Large PCA</th>
               <td>0.01945737004</td>
               <td>99</td>
             </tr>
@@ -241,7 +241,7 @@
               <td>93</td>
             </tr>
             <tr>
-              <th scope="row">Big PCA</th>
+              <th scope="row">Large PCA</th>
               <td>0.1332252473</td>
               <td>91.80000305</td>
             </tr>
@@ -261,23 +261,23 @@
         <p class="lead text-muted">Selected Embedding Visualizations</p>
         <p class="text-muted">Reduced dimension DistilBERT embeddings visualized in 3 dimensions by plotting the top three components of the embedding.</p>
         <div class="row text-center">
-          <h5>SMS_SPAM (Isomap, Big PCA)</h5>
+          <h5>SMS_SPAM (Isomap, Large PCA)</h5>
           <div class="col">
             <img src="img/SMS_SPAM (Isomap) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
           </div>
           <div class="col">
-            <img src="img/SMS_SPAM (Big PCA) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
+            <img src="img/SMS_SPAM (Large PCA) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
           </div>
 
-          <h5>AG_NEWS (Isomap, Big PCA)</h5>
+          <h5>AG_NEWS (Isomap, Large PCA)</h5>
           <div class="col">
             <img src="img/AG_NEWS (Isomap) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
           </div>
           <div class="col">
-            <img src="img/AG_NEWS (Big PCA) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
+            <img src="img/AG_NEWS (Large PCA) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
           </div>
 
-          <h5>Amazon Reviews (Isomap, Big PCA)</h5>
+          <h5>Amazon Reviews (Isomap, Large PCA)</h5>
           <div class="col">
             <img src="img/Amazon Review (Isomap) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
           </div>
@@ -285,12 +285,12 @@
             <img src="img/Amazon Review (Isomap) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
           </div>
 
-          <h5>Fake News (Isomap, Big PCA)</h5>
+          <h5>Fake News (Isomap, Large PCA)</h5>
           <div class="col">
             <img src="img/Fake News (Isomap) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
           </div>
           <div class="col">
-            <img src="img/Fake News (Big PCA) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
+            <img src="img/Fake News (Large PCA) - Embedding Graph.png" class="figure-img img-fluid rounded" alt="SMS_SPAM Isomap Embedding Visualization">
           </div>
         </div>
       </div>
