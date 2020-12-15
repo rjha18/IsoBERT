@@ -146,9 +146,9 @@
           <li>Small PCA (n_components=16) as expected maintained performance slightly worse than Large PCA across all four datasets. Still, Small PCA achieved test accuracy within 4.3% on three datasets (AG_NEWS, SMS_SPAM, Amazon Reviews), and performed only 5.4% worse on the fake news dataset.</li>
         </ul>
 
-        <p class="lead text-muted">As shown below, there was no clear winner. Unsurprisingly, Large PCA performed slightly better than both smaller dimensional embeddings. However, the Isomap embedding was a handily beat the PCA embedding of the same size on two of the four datasets, was slightly worse on the fake news dataset, and worse on the final. Isomap performed, on average nearly a percentage point (0.79%) better. TODO: Update numbers</p>
+        <p class="lead text-muted">As shown below, there was no clear winner. Unsurprisingly, Large PCA performed slightly better than both smaller dimensional embeddings. However, the Isomap embedding was a handily beat the PCA embedding of the same size on two of the four datasets, was slightly worse on the fake news dataset, and worse on the final. Isomap performed, on average nearly a percentage point (1.10%) better than Small PCA. Additionally, despite a 48-fold reduction in embedding dimensionality, Isomap only averaged 1.71% worse across the four datasets compared to Logistic Regression. Finally, we discovered that by reducing the dimensionality of the embeddings, we were able to reduce the training time as well as improve the initial test accuracy. Across all datasets, Isomap either started with a higher testing accuracy, or took fewer iterations to converge than any of the other methods, doing both in some cases. Our full results can be found <a href="https://docs.google.com/spreadsheets/d/1lRPDd_auOxFBoutjD4mF5BQsYw7ton4h7iod7lLl3D0/edit?usp=sharing">here</a></p>
 
-        <a style="text-decoration: none;";" href="https://www.kaggle.com/bittlingmayer/amazonreviews"><p class="lead text-muted">Amazon Reviews (2 Classes, sentiment analysis, trained on reviews)</p></a>
+        <a style="text-decoration: none;" href="https://www.kaggle.com/bittlingmayer/amazonreviews"><p class="lead text-muted">Amazon Reviews (2 Classes, sentiment analysis, trained on reviews)</p></a>
         <table class="table">
           <thead>
             <tr>
@@ -226,23 +226,23 @@
           <tbody>
             <tr>
               <th scope="row">Logistic Regression</th>
-              <td>0.008057968691</td>
-              <td>98.19999695</td>
+              <td>0.009219867177</td>
+              <td>98.80000305</td>
             </tr>
             <tr>
               <th scope="row">Large PCA</th>
-              <td>0.01945737004</td>
-              <td>99</td>
+              <td>0.02338535339</td>
+              <td>99.19999695</td>
             </tr>
             <tr>
               <th scope="row">Isomap</th>
-              <td>0.01761851087</td>
-              <td>97.80000305 </td>
+              <td>0.0260368865</td>
+              <td>99</td>
             </tr>
             <tr>
               <th scope="row">Small PCA</th>
-              <td>0.02542848885</td>
-              <td>98.59999847 </td>
+              <td>0.01323001925</td>
+              <td>99</td>
             </tr>
           </tbody>
         </table>
@@ -259,23 +259,23 @@
           <tbody>
             <tr>
               <th scope="row">Logistic Regression</th>
-              <td>0.04637527466</td>
-              <td>93</td>
+              <td>0.06717857718</td>
+              <td>92.63999939</td>
             </tr>
             <tr>
               <th scope="row">Large PCA</th>
-              <td>0.1332252473</td>
-              <td>91.80000305</td>
+              <td>0.1922388822</td>
+              <td>91.44000244</td>
             </tr>
             <tr>
               <th scope="row">Isomap</th>
-              <td>0.2197600007</td>
-              <td>86 </td>
+              <td>0.2022854686</td>
+              <td>87.36000061</td>
             </tr>
             <tr>
               <th scope="row">Small PCA</th>
-              <td>0.2089808136</td>
-              <td>87.59999847 </td>
+              <td>0.3117205501</td>
+              <td>88.48000336 </td>
             </tr>
           </tbody>
         </table>
