@@ -31,13 +31,50 @@
       </div>
 
       <div class="py-3 col-lg-10 col-md-0 mx-auto">
-        <h3 class="fw-light">Methadology</h3>
+        <h3 class="fw-light">Methodology</h3>
         <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Datasets</th>
+              <th scope="col">Classes</th>
+              <th scope="col">Task</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Amazon Reviews</th>
+              <td>2</td>
+              <td>Sentiment Analysis</td>
+            </tr>
+            <tr>
+              <th scope="row">AG_NEWS</th>
+              <td>5</td>
+              <td>Text Classification</td>
+            </tr>
+            <tr>
+              <th scope="row">SMS_SPAM</th>
+              <td>2</td>
+              <td>Text Classification </td>
+            </tr>
+            <tr>
+              <th scope="row">Fake News</th>
+              <td>2</td>
+              <td>Text Classification </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="py-3 col-lg-10 col-md-0 mx-auto">
-        <h3 class="fw-light">Experiments/Evaluation</h3>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <h3 class="fw-light">Experiments</h3>
+        <p class="lead text-muted">In order to test our hypotheses, we tested a variety of different hyperparameters for our PCA and Isomap algorithms to find the optimal number of components and neighbors for each algorithm. We discovered that when initially reducing the dimensionality with PCA, we could capture 80% of the variance with only the top 64 components, which contained enough information for consistently strong performance among all datasets. As discussed in the methodology section, we experimented with a variety of different manifold learning techniques, but we found the best results (both runtime, memory and performance) to be Isomap. To further reduce the dimensionality of the embeddings, we empirically found running Isomap with 32 neighbors and reducing the embeddings down to a final embedding of 16 dimensions. We sought to reduce the dimensions as low as possible in both the PCA and Isomap stages without compromising downstream accuracy. Although our experimentation at this stage was not fully exhaustive, these parameters seemed to produce strong enough intermediate results to move forward to our evaluation.</p>
+      </div>
+
+      <div class="py-3 col-lg-10 col-md-0 mx-auto">
+        <h3 class="fw-light">Evaluation</h3>
+        <p class="lead text-muted">To maintain consistency in our evaluation, we trained all of our models using the same DistilBERT embeddings on the datasets. All datasets were shuffled, shortened to the top 5000 rows, then finally split into 75% training and 25% testing datasets. We trained a simple 2-layer (32 hidden dim) logistic regression model directly on the sentence embeddings, tuning the learning rate to maximize performance. This served as our baseline for the other three models we evaluated. We evaluated the three reduced dimension models on the same embeddings, starting the learning rate at 0.001 and training, with a learning rate adjustment of 0.1 when the train loss plateaued until each model appeared to converge, reporting training loss and accuracy on the test set. We repeated this procedure on each dataset with the exact same conditions and hyperparameters. </p>
       </div>
 
       <div class="py-3 col-lg-10 col-md-0 mx-auto">
@@ -46,9 +83,6 @@
         <p class="text-muted">Big PCA (n_components=64) performed extremely well in all four tests. Compared to logistic regression, Big PCA achieved better performance on two datasets (AG_NEWS, SMS_SPAM) and was within 1.3% test accuracy on the other two datasets. </p>
         <p class="text-muted">Isomap (n_components=16) performed quite similarly to Big PCA on most datasets. We achieved superior test accuracy to logistic regression on the Amazon Review dataset, and were within 2.2% test accuracy on AG_NEWS and SMS_SPAM. The only shortcoming was a difference of 5% test accuracy on the Fake News dataset.</p>
         <p class="text-muted">Small PCA (n_components=16) unsurprisingly maintained performance slightly worse than Big PCA across all four datasets. Still, Small PCA achieved test accuracy within 4.3% on three datasets (AG_NEWS, SMS_SPAM, Amazon Reviews), and performed only 5.4% worse on the fake news dataset.</p>
-
-
-
 
         <a style="text-decoration: none;";" href="https://www.kaggle.com/bittlingmayer/amazonreviews"><p class="lead text-muted">Amazon Reviews (2 Classes, sentiment analysis, trained on reviews)</p></a>
         <table class="table">
@@ -149,7 +183,7 @@
           </tbody>
         </table>
 
-        <a style="text-decoration: none;";" href="https://www.kaggle.com/c/fake-news/data"><p class="lead text-muted">Fake News (2 Classes, text classification, trained on headlines)</p></a>
+        <a style="text-decoration: none;";" href="https://www.kaggle.com/c/fake-news/data"><p class="lead text-muted">Fake News (2 Classes, text classification, trained on headlines only)</p></a>
         <table class="table">
           <thead>
             <tr>
@@ -181,6 +215,7 @@
             </tr>
           </tbody>
         </table>
+        <a href="https://docs.google.com/spreadsheets/d/1lRPDd_auOxFBoutjD4mF5BQsYw7ton4h7iod7lLl3D0/edit?usp=sharing"><p class="text-muted">Full Results</p></a>
         <p class="lead text-muted">Selected Embedding Visualizations</p>
         <p class="text-muted">Reduced dimension DistilBERT embeddings visualized in 3 dimensions by plotting the top three components of the embedding.</p>
         <div class="row text-center">
