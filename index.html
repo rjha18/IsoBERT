@@ -35,17 +35,17 @@
         <h6 class="fw-light">Tenenbaum's Isomap</h6>
       </div>
 
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Abstract</h3>
         <p class="lead text-muted"><a href="https://arxiv.org/abs/1910.01108">DistilBERT</a> embeddings improve upon their widely used predecessor (<a href="https://arxiv.org/pdf/1910.01108">BERT</a>) by creating similarly performing embeddings that are "smaller, faster, cheaper and lighter." However, at 768 dimensions, the embeddings themselves can be prohibitively large. For this project we investigated the effects of linear (<a href="https://people.eecs.berkeley.edu/~wainwrig/stat241b/scholkopf_kernel.pdf">Kernel</a> and standard PCA) and non-linear (<a href="https://web.mit.edu/cocosci/Papers/sci_reprint.pdf">Isomap</a>) dimensionality reduction on DistilBERT embeddings, reducing to 64 and 16 dimensions. We find that in many cases, for text classification and sentiment analysis tasks, 16-dimensional, Isomap/PCA reduced DistilBERT embeddings often performed similarly or better when compared to 16 dimensional PCA-reduced embeddings, 64 dimensional PCA-reduced embeddings, and the original embeddings. These results show promise for a novel geometric approach to achieve lower dimensional text embeddings from existing transformers and pave way for data and application specific manifold reductions. Our code is <a href="https://colab.research.google.com/drive/1-8NoW_xl11XPS_XkUOvzDlXLzuUnk3kk?usp=sharing">here</a> and our results <a href="https://docs.google.com/spreadsheets/d/1lRPDd_auOxFBoutjD4mF5BQsYw7ton4h7iod7lLl3D0/edit?usp=sharing">here<a>.</p>
       </div>
 
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Problem Statement</h3>
         <p class="lead text-muted"> State of the art deep textual analysis models and small memory-constrained NLP projects alike could benefit from smaller sentence embeddings. For the former, lighter, equally effective embeddings allow for deeper models. For the latter, smaller embeddings put less strain on computational resources. While there is a lot of work being done optimizing the models themselves, another approach is reducing the dimensionality of the output embeddings directly from existing transformers. We hypothesize that for many problems, high dimensional features can be reduced to much smaller dimensionality using its underlying textual geometry to accomplish the same goal.</p>
       </div>
 
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Related Work</h3>
 
         <h5 class="fw-light">Inspiration</h5>
@@ -71,7 +71,7 @@
         </ul>
       </div>
 
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Motivation</h3>
         <p class="lead text-muted">Text has latent structure and shape. For example, the structure and syntax of a recipe is noticeably different than that of an academic paper or poetry perhaps. So, the question for trying to reduce the dimensionality of DistilBERT then is how well the embeddings encapsulate an internal geometry of text and how can we best maintain this geometry. To answer this, we reduced the DistilBERT embeddings of the only 30 unique lines in Miley Cyrus’ “Party in the U.S.A” and a quasi-random selection of 30 sentences from Microsoft’s Security Agreement below. We start by reducing the embeddings to 64 dimensions by PCA and then to 3 using Isomap (on the left) and PCA again (on the right). As you can see on the left, DistilBERT embeddings do, in fact, have some interesting shape: the Miley Cyrus lyrics were largely mapped to a single dimension whereas the security agreement was sparse. On the right, however, the distinction is less clear.</p>
         <div class="row text-center">
@@ -91,7 +91,7 @@
         <p class="lead text-muted">In future work we would try a supervised version of LLE and other Isomap methods (Conformal and Landmark). In addition, we tried Kernel PCA, and found it be much slower with similar results to standard PCA. This, however, should be studied more carefully.</p>
       </div>
 
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Methodology</h3>
         <h5 class="fw-light">Embeddings:</h5>
         <p class="lead text-muted">Using DistilBERT we generated three embeddings:</p>
@@ -142,14 +142,14 @@
 
       </div>
 
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Experiments and Evaluation</h3>
         <p class="lead text-muted">In order to test our hypotheses, we tested a variety of different hyperparameters for our PCA and Isomap algorithms to find the optimal number of components and neighbors for each algorithm. We discovered that when initially reducing the dimensionality with PCA, we could capture 80% of the variance with only the top 64 components, which contained enough information for consistently strong performance among all datasets. As discussed in the Motivation section, we experimented with a variety of different manifold learning techniques, but we found the best results (runtime, memory, and performance) to be Isomap. We empirically found running Isomap with 32 neighbors and 16 components was optimal. We sought to reduce the dimensions as low as possible in both the PCA and Isomap stages without compromising downstream accuracy. Although our experimentation at this stage was not fully exhaustive, these parameters seemed to produce strong enough intermediate results to move forward to our evaluation.</p>
 
         <p class="lead text-muted">To maintain consistency in our evaluation, we trained all of our models using the same DistilBERT embeddings on the datasets. All datasets were shuffled, shortened to the top 5000 rows, then finally split into 75% training and 25% testing datasets. We trained a simple 2-layer (32 hidden dim with a ReLU activation) logistic regression model directly on the sentence embeddings, tuning the learning rate to maximize performance. This served as our baseline for the other three models we evaluated. We tuned the learning rate for each model separately, reporting training loss and accuracy on the test set. We repeated this procedure on each dataset with the exact same conditions and hyperparameters.</p>
       </div>
 
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Results</h3>
         <p class="lead text-muted">On the four benchmark datasets we selected, all three forms of dimensionality reduction we chose performed well. </p>
         <ul class="lead text-muted">
@@ -328,7 +328,7 @@
         </div>
       </div>
       
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Future Work</h3>
         <ul class="lead text-muted">
           <li>Compare DistilBERT Reductions to reductions on other embeddings (XLNET, BERT, etc.).</li>
@@ -338,7 +338,7 @@
         </ul>
       </div>
 
-      <div class="py-3 col-lg-9 col-md-0 mx-auto">
+      <div class="py-3 col-lg-9 col-md-0 col-sm-0 mx-auto">
         <h3 class="fw-light">Video</h3>
         <div class="ratio ratio-16x9">
           <iframe width="560" height="315" src="https://www.youtube.com/embed/dB7sbBVYlF8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
