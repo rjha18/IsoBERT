@@ -17,6 +17,10 @@
       </div>
 
       <div class="row text-center">
+        <h5 class="fw-light text-muted">By Kai Mihata and Rishi Jha</h5>
+      </div>
+
+      <div class="row text-center">
         <div class="col">
           <img src="img/isomap.png" class="figure-img img-fluid rounded" alt="Tenenbaum Isomap">
         </div>
@@ -146,7 +150,7 @@
           <li>Small PCA (n_components=16) as expected maintained performance slightly worse than Large PCA across all four datasets. Still, Small PCA achieved test accuracy within 4.3% on three datasets (AG_NEWS, SMS_SPAM, Amazon Reviews), and performed only 5.4% worse on the fake news dataset.</li>
         </ul>
 
-        <p class="lead text-muted">As shown below, there was no clear winner. Unsurprisingly, Large PCA performed slightly better than both smaller dimensional embeddings. However, the Isomap embedding was a handily beat the PCA embedding of the same size on two of the four datasets, was slightly worse on the fake news dataset, and worse on the final. Isomap performed, on average nearly a percentage point (1.10%) better than Small PCA. Additionally, despite a 48-fold reduction in embedding dimensionality, Isomap only averaged 1.71% worse across the four datasets compared to Logistic Regression. Finally, we discovered that by reducing the dimensionality of the embeddings, we were able to reduce the training time as well as improve the initial test accuracy. Across all datasets, Isomap either started with a higher testing accuracy, or took fewer iterations to converge than any of the other methods, doing both in some cases. Our full results can be found <a href="https://docs.google.com/spreadsheets/d/1lRPDd_auOxFBoutjD4mF5BQsYw7ton4h7iod7lLl3D0/edit?usp=sharing">here</a></p>
+        <p class="lead text-muted">As shown below, there was no clear winner. Unsurprisingly, Large PCA performed slightly better than both smaller dimensional embeddings. However, the Isomap embedding handily beat the PCA embedding of the same size on two of the four datasets, was slightly worse on the fake news dataset, and worse on the final. Isomap performed, on average nearly a percentage point (1.10%) better than Small PCA. Additionally, despite a 48-fold reduction in embedding dimensionality, Isomap only averaged 1.71% worse across the four datasets compared to Logistic Regression. Finally, we discovered that by reducing the dimensionality of the embeddings, we were able to reduce the training time as well as improve the initial test accuracy. Across all datasets, Isomap took fewer iterations to converge than any of the other methods. This, of course, with the initial embedding time tradeoff where Isomap is slower than PCA. Our full results can be found <a href="https://docs.google.com/spreadsheets/d/1lRPDd_auOxFBoutjD4mF5BQsYw7ton4h7iod7lLl3D0/edit?usp=sharing">here</a>.</p>
 
         <a style="text-decoration: none;" href="https://www.kaggle.com/bittlingmayer/amazonreviews"><p class="lead text-muted">Amazon Reviews (2 Classes, sentiment analysis, trained on reviews)</p></a>
         <table class="table">
@@ -328,14 +332,10 @@
 
       <div class="py-3 col-lg-9 col-md-0 mx-auto">
         <h3 class="fw-light">Video</h3>
-        <p class="lead text-muted">TODO: Put video here</p>
+        <div class="ratio ratio-16x9">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/dB7sbBVYlF8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
-    </div>
-  </section>
-  
-  <section class="text-left container">
-    <div class="row py-lg-5">
-      
     </div>
   </section>
 </body>
