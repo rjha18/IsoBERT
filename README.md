@@ -1,4 +1,7 @@
 # IsoBERT
+**NOTE: This Project has been moved over to [geoBERT](https://github.com/kaimihata/geo-bert)**
+
+
 Hi! Welcome to the IsoBERT repository.
 
 Most of the pertinent information can be found here at: [site](https://rjha18.github.io/IsoBERT/).
